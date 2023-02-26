@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDLDi9SiNR_kMq92dR9L6vABoqYhDV8qPI",
-  authDomain: "chatgpt-messenger-b1402.firebaseapp.com",
-  projectId: "chatgpt-messenger-b1402",
-  storageBucket: "chatgpt-messenger-b1402.appspot.com",
-  messagingSenderId: "1006670906478",
-  appId: "1:1006670906478:web:e2ee954f798ab79020927f",
-  measurementId: "G-V0RE2L7LGW",
+  apiKey: "AIzaSyBb2O4AMkjqY5bfAF2829ZPorQDiukdsoY",
+  authDomain: "chatgpt-messenger-532fc.firebaseapp.com",
+  projectId: "chatgpt-messenger-532fc",
+  storageBucket: "chatgpt-messenger-532fc.appspot.com",
+  messagingSenderId: "883513628528",
+  appId: "1:883513628528:web:081b411717ed4b589be1b5",
+  measurementId: "G-BRJ3SQXXNM"
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
