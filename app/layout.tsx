@@ -6,6 +6,7 @@ import SideBar from "components/SideBar";
 import { SessionProvider } from "components/SessionProvider";
 import "@/styles/globals.css";
 import Login from "components/Login";
+import ClientProvider from "components/ClientProvider";
 
 export const metadata = {
   title: "ChatGPT Application",
@@ -29,10 +30,11 @@ export default async function RootLayout({
             <div className="flex">
               <div
                 className="bg-[#202123] max-w-xs 
-        h-screen overflow-y-scroll md:min-w-[300px]"
+                h-screen overflow-y-scroll md:min-w-[300px]"
               >
                 <SideBar />
               </div>
+              <ClientProvider />
               <div className="bg-[#343541] flex-1">{children}</div>
             </div>
           )}
