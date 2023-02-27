@@ -46,9 +46,7 @@ function ChatInput({ chatId }: Props) {
         chatId,
         "messages"
       ),
-      {
-        message,
-      }
+      message
     );
 
     const notification = toast.loading("ChatGPT is thinking...");
