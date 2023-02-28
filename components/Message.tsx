@@ -9,16 +9,16 @@ function Message({ message }: Props) {
   const isChatGPT = message.user.name === "ChatGPT";
 
   return (
-    <div className={`flex justify-center py-5 text-white ${isChatGPT && "bg-[#434654]"}`}>
-      <div className="flex space-x-5 px-5">
+    <div className={`flex  py-5 text-white ${isChatGPT && "bg-[#434654]"}`}>
+      <div className={`flex lg:w-[700px] lg:mx-auto gap-5 px-5 ${!isChatGPT && `flex-row-reverse ml-auto`}`}>
         <Image
           src={message.user.avatar}
           alt="avatar"
-          width={10}
-          height={10}
-          className="rounded-full h-10 w-10 object-cover"
+          width={500}
+          height={500}
+          className="rounded-full h-10 w-10"
         />
-        <p className="">{message.text}</p>
+        <p>{message.text}</p>
       </div>
     </div>
   );
