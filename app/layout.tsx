@@ -10,7 +10,7 @@ import ClientProvider from "components/ClientProvider";
 
 export const metadata = {
   title: "ChatGPT Application",
-  description: "ChatGPT OpenAI Application",
+  description: "Stack: Typescript, Next.js, TailwindCSS, Firebase",
 };
 
 export default async function RootLayout({
