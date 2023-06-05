@@ -5,7 +5,6 @@ import query from "lib/queryApi";
 import { adminDb } from "firebaseAdmin";
 import { firestore } from "firebase-admin";
 
-
 type Data = {
   answer: string;
 };
@@ -26,14 +25,15 @@ export default async function handler(
     return;
   }
 
-  const response = await query(prompt, chatId, model);
+  const response = await query(prompt, model);
   const message: Message = {
     text: response || "ChatGPT didn't find an answer on that",
     createdAt: firestore.FieldValue.serverTimestamp(),
     user: {
       _id: "ChatGPT",
       name: "ChatGPT",
-      avatar: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+      avatar:
+        "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
     },
   };
 
