@@ -2,12 +2,19 @@
 
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { db } from "../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  orderBy,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import ModelSelection from "./ModelSelection";
 import useSWR from "swr";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 type Props = {
   chatId: string;
@@ -20,6 +27,22 @@ function ChatInput({ chatId }: Props) {
   const { data: model } = useSWR("model", {
     fallbackData: "text-davinci-003",
   });
+
+  const [messages] =
+    useCollection(
+      session &&
+        query(
+          collection(
+            db,
+            "users",
+            session?.user?.email!,
+            "chats",
+            chatId,
+            "messages"
+          ),
+          orderBy("createdAt", "asc")
+        )
+    ) || [];
 
   const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,6 +88,7 @@ function ChatInput({ chatId }: Props) {
         chatId,
         model,
         session,
+        messages,
       }),
     }).then(() => {
       toast.success("ChatGPT has been responded", {
