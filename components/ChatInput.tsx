@@ -12,7 +12,6 @@ import {
 import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
-import ModelSelection from "./ModelSelection";
 import useSWR from "swr";
 import { useCollection } from "react-firebase-hooks/firestore";
 
@@ -22,6 +21,7 @@ type Props = {
 
 function ChatInput({ chatId }: Props) {
   const [prompt, setPrompt] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const { data: session } = useSession();
 
   const { data: model } = useSWR("model", {
@@ -98,15 +98,21 @@ function ChatInput({ chatId }: Props) {
   };
 
   return (
-    <div className="flex-col bg-gray-700/50 text-gray-400 rounded-lg text-sm flex lg:w-[700px] lg:mx-auto">
+    <div
+      className={`absolute bottom-[20px] left-0 right-0 flex-col bg-gray-700/50 text-gray-400 rounded-lg text-sm flex lg:w-[700px] lg:mx-auto ${
+        isInputFocused && `bg-gray-700/90`
+      }`}
+    >
       <form onSubmit={sendMessage} className="p-5 space-x-5 flex w-full">
         <input
-          className="flex-1 bg-transparent 
+          className={`flex-1 bg-transparent 
           focus:outline-none disabled:cursor-not-allowed
-        disabled:text-gray-300"
+        disabled:text-gray-300`}
           disabled={!session}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+          onFocus={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
           type="text"
           placeholder="Write your message here..."
         />
@@ -120,9 +126,6 @@ function ChatInput({ chatId }: Props) {
           <PaperAirplaneIcon className="h-4 w-4 -rotate-45" />
         </button>
       </form>
-      <div className="md:hidden">
-        <ModelSelection />
-      </div>
     </div>
   );
 }

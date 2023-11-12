@@ -9,14 +9,13 @@ const query = async (prompt: string, model: string, messages: any) => {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo-1106",
       messages: [
-        // { role: "system", content: "Hi my name is Tom" },
+        // 4509 required settings
+        {
+          role: "system",
+          content: "",
+        },
         { role: "user", content: prompt },
-        // { role: "user", content: "Who won the world series in 2020?" },
-        // {
-        //   role: "assistant",
-        //   content: "The Los Angeles Dodgers won the World Series in 2020.",
-        // },
-        // { role: "user", content: "Where was it played? And what is my name?" },
+        // 4501 Add a dialogue
       ],
     });
 

@@ -55,7 +55,7 @@ function Chat({ chatId }: Props) {
       {messages?.docs.map((message: any) => (
         <Message key={message.id} message={message.data()} />
       ))}
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} className="h-[160px]" />
     </div>
   );
 }
